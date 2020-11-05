@@ -1,5 +1,5 @@
 homepage: "https://www.raptorservices.com"
 documentation: "https://support.raptorsmartadvisor.com"
 versions:
-  - sha: 888fc0008cf45db4923ee7e7b174531a29a9fcc0
+  - sha: 4a34848156f838124c07e9de9f5589b089a3060c
     changeNotes: Initial release.
