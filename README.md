@@ -1,16 +1,15 @@
-# Main script for Google Tag manager
+#Main script for Google Tag manager
 
 Script template for Google Tag manager. Should be put on all pages at the pageview event
 
-###Prerequisites
+### Prerequisites
 - A Raptor CustomerId. You will find your customerId in the Raptor controlpanel. To gain access to Raptor, please contact support@raptorsmartadvisor.com
 - A website using Google Tagmanager and Enhanced Ecommerce
 
->**NB:** The Raptor tags will only work on a website, which has implemented Enhanced Ecommerce (UA). Please refer to Googles documentation, before implementing the following tags.
-[Enhanced Ecommerce Documentation](https://developers.google.com/tag-manager/enhanced-ecommerce)
+>**NB:** The Raptor tags will only work on a website, which has implemented Enhanced Ecommerce (UA). Please refer to Googles documentation, before implementing the following tags.[Enhanced Ecommerce Documentation](https://developers.google.com/tag-manager/enhanced-ecommerce)
+<
 
-
-###Step by step guide for implementing the Raptor tags in GTM
+### Step by step guide for implementing the Raptor tags in GTM
 
 
 - Import the template "Raptor main" from the template gallery
@@ -32,7 +31,7 @@ Script template for Google Tag manager. Should be put on all pages at the pagevi
 - Add the extra fields to the datalayer which is described below
 
 
-###Extra fields needed in the datalayer
+### Extra fields needed in the datalayer
 
 #### ecommerce.categoryPath
 
@@ -68,7 +67,7 @@ Example:
 
 
 
-####ecommerce.basketContent & ecommerce.basketId
+#### ecommerce.basketContent & ecommerce.basketId
 When firing basket events (addToBasket and removeFromBasket), add the following parameters to the ecommerce object:
 
 
@@ -101,7 +100,7 @@ Example:
 }
 ```
 
-####ecommerce.raptorModule
+#### ecommerce.raptorModule
 When clicking a raptor module on the website, add a variable containing the name of the clicked module
 
 Example:
