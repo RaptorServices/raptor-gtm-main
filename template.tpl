@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "Raptor main",
+  "displayName": "Raptor main edited",
   "categories": [
     "PERSONALIZATION",
     "EMAIL_MARKETING"
@@ -65,6 +65,20 @@ ___TEMPLATE_PARAMETERS___
       }
     ],
     "help": "The parameter index for tracking event types (\u0027visit\u0027,\u0027buy\u0027,\u0027basket\u0027 etc). Only change this if the event type is tracked on a different position that p1."
+  },
+  {
+    "type": "TEXT",
+    "name": "ruidQueryParamName",
+    "displayName": "Userid Query Parameter name (Default: ruid)",
+    "simpleValueType": true,
+    "help": "The name of the queryparameter used for tracking the userid sent through the querystring from a third party system, for instance an email marketing system",
+    "alwaysInSummary": false,
+    "defaultValue": "ruid",
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      }
+    ]
   }
 ]
 
@@ -97,7 +111,7 @@ function ensureRaptor()
       q: [],
       push: function(event,params,options){
         callInWindow('raptor.q.push',{event:event,params:params, options:options});
-    	}
+    	},
     }; 
     setInWindow('raptor',raptor,true);
     
@@ -109,6 +123,8 @@ function ensureRaptor()
   }
   setInWindow('raptor.customerId',data.customerId,true);
   setInWindow('raptor.noCookies',data.disableCookies,true);
+  setInWindow('raptor.ruidQueryParamName',data.ruidQueryParamName,true);
+  
 
 }
 
@@ -405,6 +421,45 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "raptor.ruidQueryParamName"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
               }
             ]
           }
@@ -516,9 +571,28 @@ scenarios:
 
     // Verify that the tag finished successfully.
     assertApi('gtmOnSuccess').wasCalled();
+- name: Should set ruidQueryParamName
+  code: |-
+    const mockData = {
+      customerId :'1234',
+      eventTypeNumber:16,
+      ruidQueryParamName:'myId'
+    };
+
+    // Call runCode to run the template's code.
+    runCode(mockData);
+    var raptor = copyFromWindow('raptor');
+
+    assertThat(raptor).isDefined();
+    assertThat(raptor.ruidQueryParamName).isEqualTo('myId');
+
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
 setup: |-
   var copyFromWindow = require('copyFromWindow');
   var setInWindow = require('setInWindow');
+  const log = require('logToConsole');
   setInWindow('raptor',null,true);
   var scriptUrl = 'https://az19942.vo.msecnd.net/script/raptor-3.0.min.js';
 
