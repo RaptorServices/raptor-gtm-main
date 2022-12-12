@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "Raptor main edited",
+  "displayName": "Raptor Main",
   "categories": [
     "PERSONALIZATION",
     "EMAIL_MARKETING"
