@@ -2,11 +2,13 @@ homepage: "https://www.raptorservices.com"
 documentation: "https://support.raptorsmartadvisor.com"
 versions:
   #Current version
-  - sha: 1b48503e3d371e145466d5d862e4b4868d051aac
-    changeNotes: Added option for setting the userid query parameter name
+  - sha: 18ead9fdb58f1575d644491b283d178216e0eb5f
+    changeNotes: Name correction
 
 
 #Older versions
+  - sha: 1b48503e3d371e145466d5d862e4b4868d051aac
+    changeNotes: Added option for setting the userid query parameter name
   - sha: 2b7cfcb49d245d8640d6c8aed8b388d2e07f40c1
     changeNotes: Custom eventtype param and improved tests. New readme file
   - sha: 4a34848156f838124c07e9de9f5589b089a3060c
