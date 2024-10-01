@@ -90,23 +90,24 @@ const copyFromWindow = require('copyFromWindow');
 const setInWindow = require('setInWindow');
 const callInWindow = require('callInWindow');
 const log = require('logToConsole');
-
-
+ 
+ 
 if(!data.customerId) return fail('CustomerId must be set');
-
-ensureRaptor();
-injectScript('https://az19942.vo.msecnd.net/script/raptor-3.0.min.js',data.gtmOnSuccess, data.gtmOnFailure);
-
-
+ 
+if(!ensureRaptor())
+{
+  injectScript('https://az19942.vo.msecnd.net/script/raptor-3.0.min.js',data.gtmOnSuccess, data.gtmOnFailure);
+}
+ 
 data.gtmOnSuccess();
-
-
+ 
+ 
 function ensureRaptor()
 {
   var q = copyFromWindow('raptor.q');
   if(!q) q = copyFromWindow('raptor.eventQueue');
+  if(q) return true;
   if(!q){
-    
     var raptor = {
       q: [],
       push: function(event,params,options){
@@ -114,7 +115,6 @@ function ensureRaptor()
     	},
     }; 
     setInWindow('raptor',raptor,true);
-    
     var pageviewEvent = {};
     var eventTypeNumber = data.eventTypeNumber;
     if(!eventTypeNumber) eventTypeNumber = 1;
@@ -124,10 +124,10 @@ function ensureRaptor()
   setInWindow('raptor.customerId',data.customerId,true);
   setInWindow('raptor.noCookies',data.disableCookies,true);
   setInWindow('raptor.ruidQueryParamName',data.ruidQueryParamName,true);
-  
-
+  return false;
+ 
 }
-
+ 
 function fail(message) {
   log(message);
   return data.onGtmFailure();
@@ -589,6 +589,25 @@ scenarios:
 
     // Verify that the tag finished successfully.
     assertApi('gtmOnSuccess').wasCalled();
+- name: Shouldn't inject script if there is event queue in window
+  code: |
+    const mockData = {
+      customerId: '1234'
+    };
+
+    var raptor = {
+     q: [],
+     eventQueue: []
+    };
+
+    setInWindow('raptor', raptor, true);
+
+    // Call runCode to run the template's code.
+    runCode(mockData);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+    assertApi('injectScript').wasNotCalled();
 setup: |-
   var copyFromWindow = require('copyFromWindow');
   var setInWindow = require('setInWindow');
