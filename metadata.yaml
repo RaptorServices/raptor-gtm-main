@@ -2,11 +2,13 @@ homepage: "https://www.raptorservices.com"
 documentation: "https://support.raptorsmartadvisor.com"
 versions:
   #Current version
-  - sha: 18ead9fdb58f1575d644491b283d178216e0eb5f
-    changeNotes: Name correction
+  - sha: 7da5005fe30957fd5ae2ded389e88749dceae0e3
+    changeNotes: Dont inject script if its already in the page
 
 
 #Older versions
+  - sha: 18ead9fdb58f1575d644491b283d178216e0eb5f
+    changeNotes: Name correction
   - sha: 1b48503e3d371e145466d5d862e4b4868d051aac
     changeNotes: Added option for setting the userid query parameter name
   - sha: 2b7cfcb49d245d8640d6c8aed8b388d2e07f40c1
