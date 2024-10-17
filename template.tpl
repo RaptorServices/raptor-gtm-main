@@ -104,9 +104,9 @@ data.gtmOnSuccess();
  
 function ensureRaptor()
 {
-  var q = copyFromWindow('raptor.q');
-  if(!q) q = copyFromWindow('raptor.eventQueue');
+  var q = copyFromWindow('raptor.eventQueue');
   if(q) return true;
+  if(!q) q = copyFromWindow('raptor.q');
   if(!q){
     var raptor = {
       q: [],
@@ -513,6 +513,9 @@ ___WEB_PERMISSIONS___
         }
       ]
     },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
     "isRequired": true
   }
 ]
@@ -608,6 +611,24 @@ scenarios:
     // Verify that the tag finished successfully.
     assertApi('gtmOnSuccess').wasCalled();
     assertApi('injectScript').wasNotCalled();
+- name: Should inject script if there is only q in the window
+  code: |
+    const mockData = {
+      customerId: '1234'
+    };
+
+    var raptor = {
+     q: [],
+    };
+
+    setInWindow('raptor', raptor, true);
+
+    // Call runCode to run the template's code.
+    runCode(mockData);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+    assertApi('injectScript').wasCalled();
 setup: |-
   var copyFromWindow = require('copyFromWindow');
   var setInWindow = require('setInWindow');
