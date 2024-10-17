@@ -104,9 +104,15 @@ data.gtmOnSuccess();
  
 function ensureRaptor()
 {
+<<<<<<< Updated upstream
   var q = copyFromWindow('raptor.q');
   if(!q) q = copyFromWindow('raptor.eventQueue');
   if(q) return true;
+=======
+  var q = copyFromWindow('raptor.eventQueue');
+  if(q) return true;
+  if(!q) q = copyFromWindow('raptor.q');
+>>>>>>> Stashed changes
   if(!q){
     var raptor = {
       q: [],
