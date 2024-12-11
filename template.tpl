@@ -96,7 +96,7 @@ if(!data.customerId) return fail('CustomerId must be set');
  
 if(!ensureRaptor())
 {
-  injectScript('https://az19942.vo.msecnd.net/script/raptor-3.0.min.js',data.gtmOnSuccess, data.gtmOnFailure);
+  injectScript('https://deliver.raptorstatic.com/script/raptor-3.0.min.js',data.gtmOnSuccess, data.gtmOnFailure);
 }
  
 data.gtmOnSuccess();
