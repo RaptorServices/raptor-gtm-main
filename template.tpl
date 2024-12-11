@@ -485,7 +485,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://az19942.vo.msecnd.net/script/raptor-3.0.min.js"
+                "string": "https://deliver.raptorstatic.com/script/raptor-3.0.min.js"
               }
             ]
           }
@@ -634,7 +634,7 @@ setup: |-
   var setInWindow = require('setInWindow');
   const log = require('logToConsole');
   setInWindow('raptor',null,true);
-  var scriptUrl = 'https://az19942.vo.msecnd.net/script/raptor-3.0.min.js';
+  var scriptUrl = 'https://deliver.raptorstatic.com/script/raptor-3.0.min.js';
 
   let success, failure;
   mock('injectScript', (url, onsuccess, onfailure) => {
