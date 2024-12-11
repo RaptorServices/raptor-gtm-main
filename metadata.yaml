@@ -2,7 +2,7 @@ homepage: "https://www.raptorservices.com"
 documentation: "https://support.raptorsmartadvisor.com"
 versions:
   #Current version
-  - sha: e99177cb817e5ba9158e6450a39786db2a07a303
+  - sha: 46e0a720cfdff3731b605616e478c8604df1f476
     changeNotes: Main script url update
  
 
