@@ -2,11 +2,13 @@ homepage: "https://www.raptorservices.com"
 documentation: "https://support.raptorsmartadvisor.com"
 versions:
   #Current version
-  - sha: dae7fb5cafc4e8c2ed9ea70fc2ff7bd93c102128
-    changeNotes: Dont inject script if its already in the page
-
+  - sha: e99177cb817e5ba9158e6450a39786db2a07a303
+    changeNotes: Main script url update
+ 
 
 #Older versions
+  - sha: dae7fb5cafc4e8c2ed9ea70fc2ff7bd93c102128
+    changeNotes: Dont inject script if its already in the page
   - sha: 18ead9fdb58f1575d644491b283d178216e0eb5f
     changeNotes: Name correction
   - sha: 1b48503e3d371e145466d5d862e4b4868d051aac
